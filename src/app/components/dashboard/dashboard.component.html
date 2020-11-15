@@ -1,0 +1,59 @@
+      <!-- Main content -->
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="inner-adjust">
+          <div class="pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">User Profile</h1>
+          </div>
+          <!-- Show user data when logged in -->
+          <div class="row" *ngIf="fsService.userData as user">
+            <div class="col-md-12">
+              <div class="media">
+                <img class="align-self-start mr-5 img-thumbnail rounded-circle"
+                  alt="{{user.displayName}}">
+                <div class="media-body">
+                  <div>
+                    <fa-icon [icon]="faCoffee"></fa-icon>
+                  </div>
+                  <img class="brand-logo" src="assets/logo/milan_logo.png">
+                  <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                  <p>User ID: <strong>{{user.uid}}</strong></p>
+                  <p>Email: <strong>{{user.email}}</strong></p>
+                  <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form >
+          <input type="text" [(ngModel)]="myNewTravel.country" placeholder="Land" name="country">
+          <input type="text" [(ngModel)]="myNewTravel.user" placeholder="User" name="user">
+          <input type="text" [(ngModel)]="myNewTravel.city" placeholder="Stadt" name="city">
+          <button (click)="addTravel(myNewTravel)">Add</button>
+        </form>
+        <ul>
+          <li *ngFor="let travel of travels | async">
+             {{travel.country}} - {{travel.city}} - {{travel.id}}
+          </li>
+      </ul>
+      <br>
+      <ul>
+        <div>Meine Reise</div>
+        <li *ngFor="let myTravel of myFilteredTravels | async">
+           {{myTravel.country}} - {{myTravel.city}} - {{myTravel.id}}
+        </li>
+    </ul>
+      <br>
+      <ul>
+        <div>Alle User</div>
+        <li *ngFor="let user of users | async">
+          {{user.email}} - {{user.id}}
+        </li>
+      </ul>
+      <br>
+      <ul>
+        <div>Gefilterte Liste</div>
+        <li *ngFor="let filtereduser of filteredUsers | async">
+          {{filtereduser.email}} - {{filtereduser.id}}
+        </li>
+      </ul>
+      </main>
