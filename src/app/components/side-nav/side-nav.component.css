@@ -1,16 +1,23 @@
-.header-container {
-  display: flex;
+
+.mat-sidenav-container {
+  height: 100%;
 }
 
-.example-sidenav-content {
-  display: flex;
+.sidenav-content {
   height: 100%;
-  align-items: center;
-  justify-content: center;
 }
 
-.example-sidenav {
-  display: flex;
-  padding: 20px;
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav {
+  padding-top: 7.5rem;
+  width: 10rem;
   height: 100%;
+  text-align: center;
+}
+
+.mat-nav-list {
+  text-align: center;
 }

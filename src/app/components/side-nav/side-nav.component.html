@@ -1,44 +1,29 @@
-<!--div class="header-container">
-  <mat-toolbar color="primary" class="header-toolbar">
-    <button mat-icon-button><mat-icon>menu</mat-icon></button>
-    <div class="header-right">
-      <a href="#login">
-        <span class="material-icons" style="color: white;">login</span>
-      </a>
-      <a href="#home">
-        <span class="material-icons" style="color: white;">person</span>
-      </a>
-      <a href="#logout">
-        <span class="material-icons" style="color: white;">logout</span>
-      </a>
-    </div>
-    <img class="header-logo" src="assets/logo/milan_logo.png" alt="">
-  </mat-toolbar>
-
-  <mat-sidenav-container>
-    <mat-sidenav>Start</mat-sidenav>
-    <mat-sidenav-content>Main</mat-sidenav-content>
-  </mat-sidenav-container>
-</div--->
-<mat-sidenav-container class="header-container" autosize>
-  <mat-toolbar color="primary">
-    <button type="button" mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </mat-toolbar>
-
-  <mat-sidenav #drawer class="example-sidenav" mode="side">
-    <div>Hallo Welt</div>
-    <div>Hallo Welt</div>
+<mat-sidenav-container class="mat-sidenav-container">
+  <mat-sidenav-content class="sidenav-content">
+    <mat-toolbar color="primary">
+      <button type="button" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Reisekosten</span>
+      <span class="header-spacer"></span>
+      <button type="button" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>login</mat-icon>
+      </button>
+      <button type="button" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+  <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+    (closed)="events.push('close!')">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of actionItems">
+        <button mat-icon-button [routerLink]="item.link" (click)="sidenav.toggle()">
+          <mat-icon>{{item.icon}}</mat-icon>
+          {{item.label}}
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>
-
-
-<!--p>Auto-resizing sidenav</p>
-    <div>Hallo Welt</div>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button--->
-
-

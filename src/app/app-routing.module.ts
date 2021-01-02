@@ -7,6 +7,7 @@ import { DashboardComponent } from '../app/components/dashboard/dashboard.compon
 import { ForgotPasswordComponent } from '../app/components/forgot-password/forgot-password.component'
 import { AuthGuard } from '../app/shared/guard/auth.guard'
 import { VerifyEmailComponent } from '../app/components/verify-email/verify-email.component'
+import { AddTravelComponent } from './components/add-travel/add-travel.component';
 
 
 const routes: Routes = [
@@ -15,8 +16,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: '**', redirectTo: '/sign-in' },
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' }
+  { path: 'add-travel', component: AddTravelComponent},
+  { path: '**', redirectTo: '#' },
+  { path: '', redirectTo: '#', pathMatch: 'full' }
 ];
 
 @NgModule({

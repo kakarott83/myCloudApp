@@ -1,5 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,10 +22,23 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle'
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule} from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card'; 
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
+/*Date*/
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 /*Icons*/
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+/*Custom*/
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -33,8 +47,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { FireStoreService } from './shared/services/firestore.service'
 import { DataService } from './shared/services/data.service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { TravelComponent } from './shared/travel/travel.component';
 
 
 
@@ -47,7 +61,8 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     ForgotPasswordComponent,
     VerifyEmailComponent,
     AddTravelComponent,
-    SideNavComponent
+    SideNavComponent,
+    TravelComponent
   ],
   imports: [
     BrowserModule,
@@ -60,15 +75,29 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
     MatIconModule,
     MatGridListModule,
     MatSidenavModule,
+    MatDatepickerModule,
     MatListModule,
     MatButtonToggleModule,
+    MatCardModule,
+    MatSelectModule,
     FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMaterialTimepickerModule.setLocale('de-DE')
   ],
-  providers: [FireStoreService, DataService],
+  providers: [
+    FireStoreService,
+    DataService,
+    {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
