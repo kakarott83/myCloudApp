@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from "./user";
-import { Travel } from "./travel";
+import { Travel } from "../model/travel";
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
@@ -176,7 +176,8 @@ export class FireStoreService {
   }
 
   addTravel(travel: Travel) {
-    this.afs.collection('travels').add(travel);
+    console.log(travel, 'my');
+    this.afs.collection('travels').add({...travel});
   }
 
   GetFilteredTravelByUser(userId: string) {

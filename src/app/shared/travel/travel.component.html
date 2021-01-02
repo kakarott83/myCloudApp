@@ -2,38 +2,81 @@
     <mat-card-title>Reisekosten</mat-card-title>
     <mat-card-header>Hallo Header</mat-card-header>
     <mat-card-content>
-        <form>
-            <mat-form-field>
-                <mat-label>Kunde</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let customer of customers" [value]="customer.name">{{customer.name}}
-                    </mat-option>
-                </mat-select>
-                <mat-error></mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Reisegrund</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let reason of reasons" [value]="reason.type">{{reason.type}}</mat-option>
-                </mat-select>
-                <mat-error></mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Start</mat-label>
-                <input matInput type="datetime-local">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Ende</mat-label>
-                <input matInput type="datetime-local">
-            </mat-form-field>
+        <form #travelForm="ngForm" class="row g-3" (ngSubmit)="onSubmit()">
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Kunde</mat-label>
+                    <mat-select [(ngModel)]="myTravel.customer" #customer="ngModel" name="customer">
+                        <mat-option *ngFor="let customer of customers" [value]="customer.name">{{customer.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Stadt</mat-label>
+                    <input matInput type="text" [(ngModel)]="myTravel.city" #city="ngModel" name="city">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Land</mat-label>
+                    <mat-select [(ngModel)]="myTravel.country" #country="ngModel" name="country">
+                        <mat-option *ngFor="let country of countries" [value]="country.name">{{country.name}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Reisegrund</mat-label>
+                    <mat-select [(ngModel)]="myTravel.reason" #reason="ngModel" name="reason">
+                        <mat-option *ngFor="let reason of reasons" [value]="reason.type">{{reason.type}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error></mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Start</mat-label>
+                    <input matInput [(ngModel)]="myTravel.start" #start="ngModel" name="start" type="datetime-local">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Ende</mat-label>
+                    <input matInput [(ngModel)]="myTravel.end" #end="ngModel" name="end" type="datetime-local">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Hotel</mat-label>
+                    <input matInput [(ngModel)]="myTravel.hotel" #hotel="ngModel" name="hotel" type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Taxi</mat-label>
+                    <input matInput [(ngModel)]="myTravel.taxi" #taxi="ngModel" name="taxi" type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="form-label">
+                    <mat-label>Auto</mat-label>
+                    <input matInput [(ngModel)]="myTravel.car" #car="ngModel" name="car" type="number">
+                </mat-form-field>
+            </div>
+            <div class="col-md-9">
+                <button type="submit" mat-button>
+                    <mat-icon>save</mat-icon>
+                </button>
+                <button mat-button>
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
         </form>
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>
-            <mat-icon>save</mat-icon>
-        </button>
-        <button mat-button>
-            <mat-icon>delete</mat-icon>
-        </button>
-    </mat-card-actions>
 </mat-card>

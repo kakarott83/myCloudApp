@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Travel } from 'src/app/shared/services/travel';
+import { Travel } from '../../shared/model/travel';
 import { User } from 'src/app/shared/services/user';
 import { FireStoreService } from '../../shared/services/firestore.service'
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -22,9 +22,17 @@ export class DashboardComponent implements OnInit {
   user: any = JSON.parse(localStorage.getItem('user'));
   faCoffee = faCoffee;
   myNewTravel: Travel = {
-    city: '',
+    customer: '',
+    reason: '',
+    end: new Date,
+    start: new Date,
+    car: 0,
+    taxi: 0,
+    hotel: 0,
     country: '',
+    city: '',
     user: ''
+
   };
 
   constructor(
