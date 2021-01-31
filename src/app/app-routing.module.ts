@@ -8,6 +8,8 @@ import { ForgotPasswordComponent } from '../app/components/forgot-password/forgo
 import { AuthGuard } from '../app/shared/guard/auth.guard'
 import { VerifyEmailComponent } from '../app/components/verify-email/verify-email.component'
 import { AddTravelComponent } from './components/add-travel/add-travel.component';
+import { TravelListComponent } from './travel-list/travel-list.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
@@ -17,7 +19,9 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
   { path: 'add-travel', component: AddTravelComponent},
-  { path: '**', redirectTo: '#' },
+  { path: 'travels', component: TravelListComponent},
+  { path: 'admin', component: AdminComponent},
+  { path: '**', redirectTo: 'dashboard' },
   { path: '', redirectTo: '#', pathMatch: 'full' }
 ];
 

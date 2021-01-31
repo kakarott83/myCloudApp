@@ -11,10 +11,10 @@ export class SideNavComponent implements OnInit {
   opened: false;
 
   actionItems = [
-    {label: 'Dashboard', icon: 'dashboard', link: ''},
+    {label: 'Dashboard', icon: 'dashboard', link: 'dashboard'},
     {label: 'Neue Reise', icon: 'note_add', link: 'add-travel'},
-    {label: 'Alle Reisen', icon: 'luggage', link: ''},
-    {label: 'Admin', icon: 'admin_panel_settings', link: ''}
+    {label: 'Alle Reisen', icon: 'luggage', link: 'travels'},
+    {label: 'Admin', icon: 'admin_panel_settings', link: 'admin'}
   ];
 
   constructor() { }

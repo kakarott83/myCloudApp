@@ -1,0 +1,48 @@
+<div class="container" *ngIf = "myTravel else noTravel">
+    <app-travel type = "edit" [myTravel] = myTravel></app-travel>
+</div>
+<ng-template class="container" #noTravel>
+    <div class="noTravel">
+        <h3>keine Reise ausgewählt</h3>
+    </div>
+</ng-template>
+<div class="container">
+  <table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Kunde</th>
+            <th scope="col">Beginn</th>
+            <th scope="col">Ende</th>
+            <th scope="col">Eingereicht</th>
+            <th scope="col">Bezahlt</th>
+            <th scope="col">Aktion</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let travel of myTravels | async">
+        <tr>
+            <th scope="row">{{travel.id}}</th>
+            <td>{{travel.customer}}</td>
+            <td>{{travel.start | date :'dd.MM.y HH:mm'}}</td>
+            <td>{{travel.end | date :'dd.MM.y HH:mm'}}</td>
+            <td>{{travel.submittedDate | date :'dd.MM.y HH:mm'}}</td>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [checked]="travel.paid" id="flexCheckChecked">
+                  </div>
+            </td>
+            <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button mat-icon-button type="button" class="btn btn-primary">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button" (click)="selected(travel)" class="btn btn-danger">
+                        <mat-icon>visibility</mat-icon>
+                    </button>
+                  </div>
+            </td>
+        </tr>
+    </tbody>
+</table>  
+</div>
+

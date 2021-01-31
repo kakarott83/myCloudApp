@@ -1,22 +1,27 @@
 <mat-sidenav-container class="mat-sidenav-container">
   <mat-sidenav-content class="sidenav-content">
-    <mat-toolbar color="primary">
+    <mat-toolbar class="header">
       <button type="button" mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
       <span>Reisekosten</span>
       <span class="header-spacer"></span>
-      <button type="button" mat-icon-button (click)="sidenav.toggle()">
+      <button type="button" class="headerButton" mat-icon-button>
         <mat-icon>login</mat-icon>
       </button>
-      <button type="button" mat-icon-button (click)="sidenav.toggle()">
+      <button type="button" class="headerButton" mat-icon-button>
         <mat-icon>logout</mat-icon>
       </button>
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
   <mat-sidenav class="sidenav" #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
     (closed)="events.push('close!')">
+    <div class="sidenav-img">
+      <img class="brand-logo" src="assets/logo/milan_logo.png">
+    </div>
     <mat-nav-list>
       <mat-list-item *ngFor="let item of actionItems">
         <button mat-icon-button [routerLink]="item.link" (click)="sidenav.toggle()">

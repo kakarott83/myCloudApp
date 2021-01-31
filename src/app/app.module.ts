@@ -4,7 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire";
@@ -49,6 +50,9 @@ import { FireStoreService } from './shared/services/firestore.service'
 import { DataService } from './shared/services/data.service';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TravelComponent } from './shared/travel/travel.component';
+import { TravelListComponent } from './travel-list/travel-list.component';
+import { AdminComponent } from './admin/admin.component';
+import { CustomerComponent } from './customer/customer.component';
 
 
 
@@ -62,12 +66,16 @@ import { TravelComponent } from './shared/travel/travel.component';
     VerifyEmailComponent,
     AddTravelComponent,
     SideNavComponent,
-    TravelComponent
+    TravelComponent,
+    TravelListComponent,
+    AdminComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatSliderModule,
     MatToolbarModule,

@@ -1,6 +1,6 @@
 <mat-card>
-    <mat-card-title>Reisekosten</mat-card-title>
-    <mat-card-header>Hallo Header</mat-card-header>
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-header>{{subTitle}}</mat-card-header>
     <mat-card-content>
         <form #travelForm="ngForm" class="row g-3" (ngSubmit)="onSubmit()">
             <div class="col-md-4">

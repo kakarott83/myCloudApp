@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { of } from 'rxjs';
 import { Travel } from '../model/travel';
 import { FireStoreService } from '../services/firestore.service'
 
@@ -10,7 +11,16 @@ import { FireStoreService } from '../services/firestore.service'
 })
 export class TravelComponent implements OnInit {
   
-  myTravel = new Travel;
+  @Input() type: string;
+  @Input() myTravel: Travel;
+
+
+
+
+  // myTravel = new Travel;
+  title = 'Neue Reise erfassen';
+  subTitle = 'Erstattung';
+  user;
 
   pickerStart
   pickerEnd
@@ -34,14 +44,34 @@ export class TravelComponent implements OnInit {
     private fsService: FireStoreService
     ) {
     this._adapter.setLocale('de');
+    this.user = JSON.parse(localStorage.getItem('user'));
    }
 
   ngOnInit(): void {
+    if(!this.myTravel) {
+      this.myTravel = new Travel;
+    }
+
+    switch (this.type)
+    {
+      case 'add': {
+        this.title = 'Neue Reise';
+        break;
+      }
+      case 'edit': {
+        this.title = 'Gewählte Reise';
+        break;
+      }
+      default: {
+        this.title = 'Neue Reise';
+        break;
+      }
+    };
   }
 
   onSubmit(): void {
-   console.log(this.myTravel)
-   this.fsService.addTravel(this.myTravel)
+   this.myTravel.user = this.user.uid
+   this.fsService.addTravel(this.myTravel);
    this.myTravel = this.clearTravel(this.myTravel);
  }
 
@@ -55,7 +85,9 @@ export class TravelComponent implements OnInit {
    travel.hotel = 0;
    travel.country = '';
    travel.city = '';
-   travel.user = ''
+   travel.user = '',
+   travel.paid = false,
+   travel.submitted = false
 
    return travel
  }

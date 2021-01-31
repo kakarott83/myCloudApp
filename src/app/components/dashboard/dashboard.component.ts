@@ -31,7 +31,9 @@ export class DashboardComponent implements OnInit {
     hotel: 0,
     country: '',
     city: '',
-    user: ''
+    user: '',
+    paid: false,
+    submitted:false
 
   };
 

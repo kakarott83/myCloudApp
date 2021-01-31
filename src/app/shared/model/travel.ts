@@ -4,10 +4,13 @@ export class Travel {
     reason?: string;
     start?: Date;
     end?: Date;
-    hotel: number;
-    car: number;
-    taxi: number;
-    country: string;
-    city: string;
-    user: string;
+    hotel?: number;
+    car?: number;
+    taxi?: number;
+    country?: string;
+    city?: string;
+    user?: string;
+    paid?: boolean;
+    submitted?: boolean;
+    submittedDate?: Date
 }

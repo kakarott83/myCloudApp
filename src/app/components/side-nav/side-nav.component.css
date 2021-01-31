@@ -11,8 +11,13 @@
   flex: 1 1 auto;
 }
 
+.header {
+  background-color: var(--primary-color);
+  /*position: fixed;*/
+}
+
 .sidenav {
-  padding-top: 7.5rem;
+  padding-top: 2rem;
   width: 10rem;
   height: 100%;
   text-align: center;
@@ -20,4 +25,12 @@
 
 .mat-nav-list {
   text-align: center;
+}
+
+.headerButton {
+  cursor: pointer;    
+}
+
+.headerButton:hover {
+  color: white;
 }

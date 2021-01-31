@@ -148,6 +148,7 @@ export class FireStoreService {
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Travel;
         const id = a.payload.doc.id;
+        console.log(id,'id');
         return { id, ...data};
       }))
     );
