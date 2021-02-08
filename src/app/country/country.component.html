@@ -1,0 +1,22 @@
+<h2>Neues Land hinzufügen</h2>
+ <form class="row g-1 countryForm" [formGroup]="countryForm" (ngSubmit)="submit()">
+     <mat-form-field>
+         <mat-label>Code</mat-label>
+         <input matInput type="text" id="code" name="code" formControlName="code">
+     </mat-form-field>
+     <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" id="name" name="name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Tagessatz</mat-label>
+        <input matInput type="number" id="rate" name="rate" formControlName="rate">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>An-und Abreise</mat-label>
+        <input matInput type="number" id="partRate" name="partRate" formControlName="partRate">
+    </mat-form-field>
+    <button type="submit" mat-button [disabled] = "countryForm.invalid">
+        <mat-icon>save</mat-icon>
+    </button>
+</form>

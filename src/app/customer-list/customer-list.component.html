@@ -1,0 +1,20 @@
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Ort</th>
+                <th scope="col">Land</th>
+            </tr>
+        </thead>
+        <tbody *ngFor = "let customer of myCustomers | async">
+            <tr>
+                <th scope="row">{{customer.id}}</th>
+                <td>{{customer.name}}</td>
+                <td>{{customer.city}}</td>
+                <td>{{customer.country.name}}</td>
+            </tr>
+        </tbody>
+    </table> 
+</div>

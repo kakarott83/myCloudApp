@@ -39,7 +39,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     public fsService: FireStoreService
-    //,private dataService: DataService
   ) { }
 
   ngOnInit(): void {

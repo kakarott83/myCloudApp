@@ -26,6 +26,7 @@ import { MatGridListModule} from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card'; 
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs'; 
 
 /*Date*/
 import {
@@ -47,12 +48,14 @@ import { AddTravelComponent } from './components/add-travel/add-travel.component
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { FireStoreService } from './shared/services/firestore.service'
-import { DataService } from './shared/services/data.service';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TravelComponent } from './shared/travel/travel.component';
 import { TravelListComponent } from './travel-list/travel-list.component';
 import { AdminComponent } from './admin/admin.component';
 import { CustomerComponent } from './customer/customer.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+import { CountryListComponent } from './country-list/country-list.component';
+import { CountryComponent } from './country/country.component';
 
 
 
@@ -69,7 +72,10 @@ import { CustomerComponent } from './customer/customer.component';
     TravelComponent,
     TravelListComponent,
     AdminComponent,
-    CustomerComponent
+    CustomerComponent,
+    CustomerListComponent,
+    CountryListComponent,
+    CountryComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +88,7 @@ import { CustomerComponent } from './customer/customer.component';
     MatButtonModule,
     MatIconModule,
     MatGridListModule,
+    MatTabsModule,
     MatSidenavModule,
     MatDatepickerModule,
     MatListModule,
@@ -97,7 +104,6 @@ import { CustomerComponent } from './customer/customer.component';
   ],
   providers: [
     FireStoreService,
-    DataService,
     {provide: MAT_DATE_LOCALE, useValue: 'de-DE'},
     {
       provide: DateAdapter,

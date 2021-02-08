@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Country } from '../shared/model/country';
 import { Customer } from '../shared/model/customer';
+import { FireStoreService } from '../shared/services/firestore.service';
 
 @Component({
   selector: 'app-customer',
@@ -9,26 +11,33 @@ import { Customer } from '../shared/model/customer';
 })
 export class CustomerComponent implements OnInit {
 
-  myCustomer: Customer;
   // ToDo soll aus Service kommen
-  countries: string[] = ['Deutschland', 'Österreich','Schweiz']
-  constructor(private fb: FormBuilder) { }
+  countries: Country[] = [
+    {name: 'Deutschland', code: 'DE'},
+    {name: 'Schweiz', code: 'CH'},
+    {name: 'Österreich', code: 'AT'}
+  ]
+
+  constructor(
+    private fb: FormBuilder,
+    private fsService: FireStoreService
+  ) { }
 
   ngOnInit(): void {
   }
 
   customerForm = this.fb.group({
-    customerName: [''],
-    customerCity: [''],
-    customerCountry: ['']
+    name: [''],
+    city: [''],
+    country: ['']
   });
 
   submit() {
-    console.log(this.customerForm.value)
+    this.fsService.addCustomer(this.customerForm.value);
     this.customerForm.setValue({
-      customerName: '',
-      customerCity: '',
-      customerCountry: ''
+      name: '',
+      city: '',
+      country: ''
     });
   }
 

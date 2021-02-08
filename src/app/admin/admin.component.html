@@ -1,4 +1,14 @@
-<div class="admin-container">
-    <app-customer></app-customer>    
-</div>
-
+<mat-tab-group>
+    <mat-tab label="Kunden">
+        <div class="admin-container">
+            <app-customer></app-customer>
+            <app-customer-list></app-customer-list> 
+        </div>
+    </mat-tab>
+    <mat-tab label="Länder">
+        <div class="admin-container">
+            <app-country></app-country>
+            <app-country-list></app-country-list> 
+        </div>
+    </mat-tab>
+</mat-tab-group>

@@ -4,6 +4,7 @@
 }
 
 .sidenav-content {
+  margin: 0;
   height: 100%;
 }
 
@@ -16,8 +17,13 @@
   /*position: fixed;*/
 }
 
+.content-container {
+  padding: 0;
+  margin-left: 5em;
+  margin-top: 0;
+}
+
 .sidenav {
-  padding-top: 2rem;
   width: 10rem;
   height: 100%;
   text-align: center;

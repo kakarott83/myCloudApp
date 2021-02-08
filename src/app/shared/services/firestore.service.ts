@@ -6,6 +6,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { map } from 'rxjs/internal/operators/map';
+import { Customer } from '../model/customer';
+import { Country } from '../model/country';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,8 @@ export class FireStoreService {
   private filteredTravelByUser: AngularFirestoreCollection<Travel>;
   private userFilteredCollection: AngularFirestoreCollection<User>;
   private userCollection: AngularFirestoreCollection<User>;
+  private customerCollection: AngularFirestoreCollection<Customer>;
+  private countryCollection: AngularFirestoreCollection<Country>;
 
   constructor(
     private afs: AngularFirestore,   // Inject Firestore service
@@ -178,7 +182,10 @@ export class FireStoreService {
 
   addTravel(travel: Travel) {
     console.log(travel, 'my');
-    this.afs.collection('travels').add({...travel});
+    this.afs.collection('travels')
+      .add({
+        ...travel
+      });
   }
 
   GetFilteredTravelByUser(userId: string) {
@@ -188,6 +195,42 @@ export class FireStoreService {
         const data = a.payload.doc.data() as Travel;
         const id = a.payload.doc.id
         return {id, ...data}
+      }))
+    )
+  }
+
+  addCustomer(customer: Customer) {
+    this.afs.collection('customers')
+      .add({
+        ...customer
+      })
+  }
+
+  getCustomers() {
+    this.customerCollection = this.afs.collection<Customer>('customers');
+    return this.customerCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Customer;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    )
+  }
+
+  addCountry(country: Country) {
+    this.afs.collection('countries')
+      .add({
+        ...country
+      })
+  }
+
+  getCountries() {
+    this.countryCollection = this.afs.collection<Country>('countries');
+    return this.countryCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Country;
+        const id = a.payload.doc.id;
+        return { id, ...data }
       }))
     )
   }
