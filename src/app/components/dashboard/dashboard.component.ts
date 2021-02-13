@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   user: any = JSON.parse(localStorage.getItem('user'));
   faCoffee = faCoffee;
   myNewTravel: Travel = {
-    customer: '',
+    customer: null,
     reason: '',
     end: new Date,
     start: new Date,
@@ -49,11 +49,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllTravels() {
-    this.travels = this.fsService.GetAllTravels()
+    this.travels = this.fsService.getTravels()
   }
 
   getAllUsers() {
-    this.users = this.fsService.GetAllUsers();
+    this.users = this.fsService.getUsers();
   }
 
   getFilteredUser(filter: string) {

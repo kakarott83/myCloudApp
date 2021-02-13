@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Customer } from '../model/customer';
 import { Travel } from '../model/travel';
+import { CalculateService } from '../services/calculate.service';
 import { FireStoreService } from '../services/firestore.service'
 
 @Component({
@@ -15,19 +17,14 @@ export class TravelComponent implements OnInit {
   @Input() myTravel: Travel;
 
 
-
-
   // myTravel = new Travel;
   title = 'Neue Reise erfassen';
   subTitle = 'Erstattung';
-  user;
+  user: any;
 
-  pickerStart
-  pickerEnd
-  customers = [
-    {name: 'BANK-now'},
-    {name: 'AIL'}
-  ]
+  pickerStart: any;
+  pickerEnd: any;
+  customers: Observable<Customer[]>;
 
   reasons = [
     {type: 'Livegang'},
@@ -39,9 +36,11 @@ export class TravelComponent implements OnInit {
     {name: 'Schweiz'},
     {name: 'Österreich'},
   ]
+
   constructor(
     private _adapter: DateAdapter<any>,
-    private fsService: FireStoreService
+    private fsService: FireStoreService,
+    private _calculate: CalculateService
     ) {
     this._adapter.setLocale('de');
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -51,6 +50,8 @@ export class TravelComponent implements OnInit {
     if(!this.myTravel) {
       this.myTravel = new Travel;
     }
+
+    this.customers = this.fsService.getCustomers();
 
     switch (this.type)
     {
@@ -70,13 +71,13 @@ export class TravelComponent implements OnInit {
   }
 
   onSubmit(): void {
-   this.myTravel.user = this.user.uid
+   this.myTravel.user = this.user.uid;
    this.fsService.addTravel(this.myTravel);
    this.myTravel = this.clearTravel(this.myTravel);
  }
 
  clearTravel(travel: Travel): Travel {
-   travel.customer = '';
+   travel.customer = null;
    travel.reason = '';
    //travel.end = new Date;
    //travel.start = new Date;
@@ -85,10 +86,16 @@ export class TravelComponent implements OnInit {
    travel.hotel = 0;
    travel.country = '';
    travel.city = '';
-   travel.user = '',
-   travel.paid = false,
-   travel.submitted = false
+   travel.user = '';
+   travel.paid = false;
+   travel.submitted = false;
+   travel.amount = 0;
 
    return travel
  }
+
+ calculate() {
+   this.myTravel.amount = this._calculate.calculate(this.myTravel);
+ }
+
 }

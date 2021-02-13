@@ -33,7 +33,7 @@
             </td>
             <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                    <button mat-icon-button type="button" class="btn btn-primary">
+                    <button mat-icon-button type="button" (click)="deleteTravel(travel.id)" class="btn btn-primary">
                         <mat-icon>delete</mat-icon>
                     </button>
                     <button mat-icon-button type="button" (click)="selected(travel)" class="btn btn-danger">

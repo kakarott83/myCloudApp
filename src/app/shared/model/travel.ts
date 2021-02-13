@@ -1,6 +1,8 @@
+import { Customer } from "./customer";
+
 export class Travel {
     id?: string;
-    customer?: string;
+    customer?: Customer;
     reason?: string;
     start?: Date;
     end?: Date;
@@ -11,6 +13,7 @@ export class Travel {
     city?: string;
     user?: string;
     paid?: boolean;
+    amount?: number;
     submitted?: boolean;
     submittedDate?: Date
 }

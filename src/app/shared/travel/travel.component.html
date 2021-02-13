@@ -1,13 +1,13 @@
 <mat-card>
     <mat-card-title>{{title}}</mat-card-title>
-    <mat-card-header>{{subTitle}}</mat-card-header>
+    <mat-card-header>{{subTitle}} {{myTravel.amount | currency: 'EUR':'symbol'}}</mat-card-header>
     <mat-card-content>
         <form #travelForm="ngForm" class="row g-3" (ngSubmit)="onSubmit()">
             <div class="col-md-4">
                 <mat-form-field class="form-label">
                     <mat-label>Kunde</mat-label>
                     <mat-select [(ngModel)]="myTravel.customer" #customer="ngModel" name="customer">
-                        <mat-option *ngFor="let customer of customers" [value]="customer.name">{{customer.name}}
+                        <mat-option *ngFor="let customer of customers | async" [value]="customer">{{customer.name}}
                         </mat-option>
                     </mat-select>
                     <mat-error></mat-error>
@@ -75,6 +75,9 @@
                 </button>
                 <button mat-button>
                     <mat-icon>delete</mat-icon>
+                </button>
+                <button type="button" mat-button (click)="calculate()">
+                    <mat-icon>calculate</mat-icon>
                 </button>
             </div>
         </form>

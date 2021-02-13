@@ -16,11 +16,15 @@ export class TravelListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.myTravels = this.fsService.GetAllTravels();
+    this.myTravels = this.fsService.getTravels();
   }
 
   selected(travel: Travel) {
     this.myTravel = travel;
+  }
+
+  deleteTravel(id: string) {
+    this.fsService.deleteTravel(id);
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Country } from '../shared/model/country';
 import { Customer } from '../shared/model/customer';
 import { FireStoreService } from '../shared/services/firestore.service';
@@ -11,12 +12,7 @@ import { FireStoreService } from '../shared/services/firestore.service';
 })
 export class CustomerComponent implements OnInit {
 
-  // ToDo soll aus Service kommen
-  countries: Country[] = [
-    {name: 'Deutschland', code: 'DE'},
-    {name: 'Schweiz', code: 'CH'},
-    {name: 'Österreich', code: 'AT'}
-  ]
+  countries: Observable<Country[]>
 
   constructor(
     private fb: FormBuilder,
@@ -24,6 +20,7 @@ export class CustomerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.countries = this.fsService.getCountries()
   }
 
   customerForm = this.fb.group({
