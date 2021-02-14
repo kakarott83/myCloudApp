@@ -1,45 +1,45 @@
 <div class="w3-row container-travel">
     <div class="w3-half w3-container container-data">
         <h2>Reisedaten</h2>
-        <form #myTravelForm class="form-travel row g-3">
+        {{myTravelForm.value | json}}
+        customer: {{customer?.name | json}}
+        <form [formGroup]="myTravelForm" class="form-travel row g-3" (ngSubmit)="onSubmit()">
             <!--Kunde-->
             <div class="travel-customer col-md-12">
                 <label class="form-label">Kunde</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Kundeauswahl</option>
-                    <option value="1">BANK-now</option>
-                    <option value="2">AIL</option>
+                <select formControlName="customer" (ngModelChange)="updateTravel()"  class="form-select">
+                    <option value="" disabled>Bitte einen Kunden auswählen</option>
+                    <option *ngFor="let customer of customers | async; let i=index" [value]="customer">{{customer.name}}</option>
                 </select>
             </div>
             <!--Zeit-->
             <div class="col-md-6">
                 <label class="form-label">Beginn</label>
-                <input type="datetime-local" class="form-control" placeholder="Reisebeginn" aria-label="Reisebeginn">
+                <input type="datetime-local" formControlName="start" class="form-control" placeholder="Reisebeginn" aria-label="Reisebeginn">
             </div>
             <div class="col-md-6">
                 <label class="form-label">Ende</label>
-                <input type="datetime-local" class="form-control" placeholder="Reiseende" aria-label="Reiseende">
+                <input type="datetime-local" formControlName="end" class="form-control" placeholder="Reiseende" aria-label="Reiseende">
             </div>
             <!--Grund-->
             <div class="travel-reason col-md-12">
                 <label class="form-label">Grund der Reise</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Grundauswahl</option>
-                    <option value="1">Livegang</option>
-                    <option value="2">Vor Ort betreuung</option>
+                <select formControlName="reason" class="form-select" aria-label="Default select example">
+                    <option value="" disabled>Bitte ein Grund auswählen</option>
+                    <option *ngFor="let reason of reasons" [value]="reason">{{reason.name}}</option>
                 </select>
             </div>
             <div class="col-md-4">
                 <label class="form-label">Hotel</label>
-                <input type="number" class="form-control" placeholder="Hotel" aria-label="Hotel">
+                <input type="number" formControlName="hotel" class="form-control" placeholder="Hotel" aria-label="Hotel">
             </div>
             <div class="col-md-4">
                 <label class="form-label">Taxi</label>
-                <input type="number" class="form-control" placeholder="Taxi" aria-label="Taxi">
+                <input type="number" formControlName="taxi" class="form-control" placeholder="Taxi" aria-label="Taxi">
             </div>
             <div class="col-md-4">
                 <label class="form-label">Auto</label>
-                <input type="number" class="form-control" placeholder="Auto" aria-label="Auto">
+                <input type="number" formControlName="car" class="form-control" placeholder="Auto" aria-label="Auto">
             </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button type="reset" class="btn btn-warning"><i class="fas fa-undo pr-2"></i>Verwerfen</button>
@@ -47,54 +47,59 @@
                 </div>
         </form>
     </div>
-    <div class="w3-half w3-container container-details">
-        <h2>Details</h2>
-        <div class="w3-row detail-card">
-            <div class="w3-half">
-                <section class="section-detail">
-                    <img class="customer-logo" src="assets/logo/bnow.png" alt="#">
-                    <div class="row">
-                        <div class="col-8">
-                            <h3>Erstattung</h3>
-                        </div>
-                        <div class="col">
-                            <p>{{amount | currency: "EUR" : "symbol"}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <p>Verpflegungspauschale</p>
-                        </div>
-                        <div class="col">
-                            <p>{{rate | currency: "EUR" : "symbol"}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <p>Auslagen</p>
-                        </div>
-                        <div class="col">
-                            <p>{{spend | currency: "EUR" : "symbol"}}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <p>Ort</p>
-                        </div>
-                        <div class="col">
-                            <p>Horgen</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <p>Land</p>
-                        </div>
-                        <div class="col">
-                            <p>Schweiz</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
+    <div *ngIf="myTravel" class="w3-half w3-container container-details">
+          <mat-accordion class="headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Kundendaten
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{myTravelForm.customer?.name}}
+                  <!--mat-icon>account_circle</mat-icon-->
+                  <img class="customer-logo" src="assets/logo/bnow.png" alt="#">
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Name</label>
+                <input type="text" class="form-control" id="customerName" disabled = true [value]="myTravel.customer.name">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Ort</label>
+                <input type="text" class="form-control" id="customerCity" disabled = true [value]="myTravel.customer.city">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Land</label>
+                <input type="text" class="form-control" id="customerCountry" disabled = true [value]="myTravel.customer.country.name">
+              </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Kalkulation
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{amount | currency: "EUR" : "symbol"}}
+                  <i class="fas fa-calculator"></i>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Tage</label>
+                <input type="text" class="form-control" id="days" disabled = true [value]="days">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Stunden</label>
+                <input type="text" class="form-control" id="hours" disabled = true [value]="hours">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">Verpflegungspauschale</label>
+                <input type="text" class="form-control" id="rate" disabled = true [value]="rate">
+              </div>
+              <div class="mb-3">
+                <label for="formGroupExampleInput2" class="form-label">An-und Abreise</label>
+                <input type="text" class="form-control" id="halfRate" disabled = true [value]="myTravel.customer.country.partRate">
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
     </div>
 </div>

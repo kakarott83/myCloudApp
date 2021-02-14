@@ -27,6 +27,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatExpansionModule } from '@angular/material/expansion';
 
 /*Date*/
 import {
@@ -95,6 +96,7 @@ import { MyTravelComponent } from './components/my-travel/my-travel.component';
     MatDatepickerModule,
     MatListModule,
     MatButtonToggleModule,
+    MatExpansionModule,
     MatCardModule,
     MatSelectModule,
     FontAwesomeModule,

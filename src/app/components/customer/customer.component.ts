@@ -1,3 +1,4 @@
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -30,6 +31,7 @@ export class CustomerComponent implements OnInit {
   });
 
   submit() {
+    console.log(this.customerForm.value)
     this.fsService.addCustomer(this.customerForm.value);
     this.customerForm.setValue({
       name: '',

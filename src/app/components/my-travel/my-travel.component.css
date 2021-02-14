@@ -22,8 +22,8 @@ h3 {
 }
 
 .customer-logo {
-    height: 50px;
-    width: 50px;
+    height: 20px;
+    width: 20px;
 }
 
 .detail-card {
@@ -34,3 +34,21 @@ h3 {
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.action-buttons {
+    padding-bottom: 20px;
+  }
+  
+  .headers-align .mat-expansion-panel-header-title,
+  .headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+  
+  .headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }

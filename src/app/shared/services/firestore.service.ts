@@ -225,6 +225,16 @@ export class FireStoreService {
     )
   }
 
+  getReasons() {
+    var reason: Reason[];
+    reason = [
+      {name: 'Vor Ort Betreuung'},
+      {name: 'Livegang'}
+    ]
+    return reason;
+
+  }
+
   //************** Hinzufügen ******************//
   
   addCountry(country: Country) {
