@@ -49,13 +49,14 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { FireStoreService } from './shared/services/firestore.service'
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import { TravelComponent } from './shared/travel/travel.component';
-import { TravelListComponent } from './travel-list/travel-list.component';
-import { AdminComponent } from './admin/admin.component';
-import { CustomerComponent } from './customer/customer.component';
-import { CustomerListComponent } from './customer-list/customer-list.component';
-import { CountryListComponent } from './country-list/country-list.component';
-import { CountryComponent } from './country/country.component';
+import { TravelComponent } from './components/travel/travel.component';
+import { TravelListComponent } from './components/travel-list/travel-list.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { CustomerComponent } from './components/customer/customer.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import { CountryListComponent } from './components/country-list/country-list.component';
+import { CountryComponent } from './components/country/country.component';
+import { MyTravelComponent } from './components/my-travel/my-travel.component';
 
 
 
@@ -75,7 +76,8 @@ import { CountryComponent } from './country/country.component';
     CustomerComponent,
     CustomerListComponent,
     CountryListComponent,
-    CountryComponent
+    CountryComponent,
+    MyTravelComponent
   ],
   imports: [
     BrowserModule,

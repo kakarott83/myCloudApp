@@ -1,0 +1,100 @@
+<div class="w3-row container-travel">
+    <div class="w3-half w3-container container-data">
+        <h2>Reisedaten</h2>
+        <form #myTravelForm class="form-travel row g-3">
+            <!--Kunde-->
+            <div class="travel-customer col-md-12">
+                <label class="form-label">Kunde</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Kundeauswahl</option>
+                    <option value="1">BANK-now</option>
+                    <option value="2">AIL</option>
+                </select>
+            </div>
+            <!--Zeit-->
+            <div class="col-md-6">
+                <label class="form-label">Beginn</label>
+                <input type="datetime-local" class="form-control" placeholder="Reisebeginn" aria-label="Reisebeginn">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Ende</label>
+                <input type="datetime-local" class="form-control" placeholder="Reiseende" aria-label="Reiseende">
+            </div>
+            <!--Grund-->
+            <div class="travel-reason col-md-12">
+                <label class="form-label">Grund der Reise</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Grundauswahl</option>
+                    <option value="1">Livegang</option>
+                    <option value="2">Vor Ort betreuung</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Hotel</label>
+                <input type="number" class="form-control" placeholder="Hotel" aria-label="Hotel">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Taxi</label>
+                <input type="number" class="form-control" placeholder="Taxi" aria-label="Taxi">
+            </div>
+            <div class="col-md-4">
+                <label class="form-label">Auto</label>
+                <input type="number" class="form-control" placeholder="Auto" aria-label="Auto">
+            </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="reset" class="btn btn-warning"><i class="fas fa-undo pr-2"></i>Verwerfen</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save pr-2"></i>Speichern</button>
+                </div>
+        </form>
+    </div>
+    <div class="w3-half w3-container container-details">
+        <h2>Details</h2>
+        <div class="w3-row detail-card">
+            <div class="w3-half">
+                <section class="section-detail">
+                    <img class="customer-logo" src="assets/logo/bnow.png" alt="#">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3>Erstattung</h3>
+                        </div>
+                        <div class="col">
+                            <p>{{amount | currency: "EUR" : "symbol"}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p>Verpflegungspauschale</p>
+                        </div>
+                        <div class="col">
+                            <p>{{rate | currency: "EUR" : "symbol"}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p>Auslagen</p>
+                        </div>
+                        <div class="col">
+                            <p>{{spend | currency: "EUR" : "symbol"}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p>Ort</p>
+                        </div>
+                        <div class="col">
+                            <p>Horgen</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <p>Land</p>
+                        </div>
+                        <div class="col">
+                            <p>Schweiz</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

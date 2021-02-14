@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Country } from '../shared/model/country';
-import { FireStoreService } from '../shared/services/firestore.service';
+import { Country } from '../../shared/model/country';
+import { FireStoreService } from '../../shared/services/firestore.service';
 
 @Component({
   selector: 'app-country-list',

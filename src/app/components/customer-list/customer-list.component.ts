@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Customer } from '../shared/model/customer';
-import { FireStoreService } from '../shared/services/firestore.service';
+import { Customer } from '../../shared/model/customer';
+import { FireStoreService } from '../../shared/services/firestore.service';
 
 @Component({
   selector: 'app-customer-list',

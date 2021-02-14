@@ -14,7 +14,8 @@ export class SideNavComponent implements OnInit {
     {label: 'Dashboard', icon: 'dashboard', link: 'dashboard'},
     {label: 'Neue Reise', icon: 'note_add', link: 'add-travel'},
     {label: 'Alle Reisen', icon: 'luggage', link: 'travels'},
-    {label: 'Admin', icon: 'admin_panel_settings', link: 'admin'}
+    {label: 'Admin', icon: 'admin_panel_settings', link: 'admin'},
+    {label: 'Test', icon: 'admin_panel_settings', link: 'myTravel'}
   ];
 
   constructor() { }

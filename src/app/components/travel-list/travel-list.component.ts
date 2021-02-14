@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Travel } from '../shared/model/travel';
-import { FireStoreService } from '../shared/services/firestore.service';
+import { Travel } from '../../shared/model/travel';
+import { FireStoreService } from '../../shared/services/firestore.service';
 
 @Component({
   selector: 'app-travel-list',

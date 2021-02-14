@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Observable, of } from 'rxjs';
-import { Customer } from '../model/customer';
-import { Travel } from '../model/travel';
-import { CalculateService } from '../services/calculate.service';
-import { FireStoreService } from '../services/firestore.service'
+import { Customer } from '../../shared/model/customer';
+import { Travel } from '../../shared/model/travel';
+import { CalculateService } from '../../shared/services/calculate.service';
+import { FireStoreService } from '../../shared/services/firestore.service'
 
 @Component({
   selector: 'app-travel',
